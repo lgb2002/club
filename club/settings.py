@@ -69,8 +69,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'), 
-            'chutzpah/main/templates/main',
-            'chutzpah/chutzpah/templates/chutzpah',
+            'club/main/templates/main',
+            'club/chutzpah/templates/chutzpah',
             #TEST,
         ],
         'APP_DIRS': True,
