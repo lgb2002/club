@@ -50,7 +50,8 @@ def join(request):
 	if request.method == "POST":
 		join_name = request.POST.get('username')
 		join_club = request.POST.get('clubname')
-		ClubList.objects.get(ClubName = join_club).update(ClubMemberSum=ClubMemberSum+1,ClubMember=join_name)
+		ClubMemberSum = ClubList.objects.get(ClubName = join_club).ClubMemberSum
+		ClubList.objects.filter(ClubName = join_club).update(ClubMemberSum=ClubMemberSum+1)
 
 	return render(request, "index.html",{
 		'clublists': clublist

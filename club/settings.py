@@ -71,6 +71,8 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates'), 
             'club/main/templates/main',
             'club/chutzpah/templates/chutzpah',
+            'main/templates/main',
+            'chutzpah/templates/chutzpah',
             #TEST,
         ],
         'APP_DIRS': True,

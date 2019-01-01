@@ -9,7 +9,6 @@ class ClubList(models.Model):
 	ClubManager1 = models.TextField(blank = "True")
 	ClubManager2 = models.TextField(blank = "True")
 	ClubMemberSum = models.IntegerField(blank = "True")
-	ClubMember = models.ManyToManyField(User)
 
     #class Meta:
     #    ordering = ['-ClubMemberSum']
