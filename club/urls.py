@@ -33,6 +33,6 @@ urlpatterns = [
     #url(r'^signup/', signup),
     url(r'^admin', admin.site.urls),
     url(r'', include('main.urls')),
-    url(r'^chutzpah', include('chutzpah.urls')),
+    url(r'^chutzpah/', include('chutzpah.urls')),
 ]
 
