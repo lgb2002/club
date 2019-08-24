@@ -11,4 +11,5 @@ urlpatterns = [
 	url(r'^razercutter', views.razercutter, name='index2'),
 	url(r'^robox', views.robox, name='index'),
 	#url(r'^index2', views.index2, name='index2'),
+	url(r'^game', views.game, name='game'),
 ]

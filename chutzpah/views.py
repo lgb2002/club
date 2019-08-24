@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 
+def game(request):
+	return render(request, 'chutzpah/game.html')
+
 def index(request):
 	return render(request, 'chutzpah/index.html')
 

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}sign up{% endblock %}
-{% block head %}sign up{% endblock %}
+{% block title %}회원가입{% endblock %}
+{% block head %}회원가입{% endblock %}
 {% block subhead %}Have Your Own Account{% endblock %}
 {% block img-bg %}{% static 'img/welcome-bg.jpg' %}{% endblock %}
 
 {% block content %}
 
-<!-- Sign Up Form -->
+<!-- 회원가입 Form -->
 <form id="signup" class="form-horizontal" method="post" action="{% url 'signup' %}">
     {% csrf_token %}
 
@@ -49,10 +49,10 @@
     <!-- Button -->
     <div class="row">
         <div class="form-group col-xs-12">
-            <button id="signup" name="signup" class="btn btn-block btn-default" type="submit">Sign Up</button>
+            <button id="signup" name="signup" class="btn btn-block btn-default" type="submit">회원가입</button>
             <hr>
             <center>
-            Or <a href="{% url 'login_url' %}"><u>log in</u></a>
+            Or <a href="{% url 'login_url' %}"><u>로그인</u></a>
             if you have an account.
             </center>
         </div>

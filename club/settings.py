@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'main',
     'chutzpah',
+    'rande',
 )
 
 INSTALLED_APPS += ('django_summernote', )
