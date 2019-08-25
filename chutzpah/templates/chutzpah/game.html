@@ -1,43 +1,57 @@
 {% load staticfiles %}
 <html>
 <head>
-	<title></title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Puhung Club">
+    <meta name="author" content="GibaekLee">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+	<title>후츠파 동아리 퀴즈 게임</title>
 
 <script language="javascript">
 var delay=10; //시간설정
 
 var q_num=1;
 var timer;
-var layer;
+//var layer;
 var clock=delay;
 var score=0;
+var wrong=0;
+var pass=0;
 
 var quizArray = [["플라스틱으로 된 필라멘트를 쌓아 출력물을 만드는 방식을 뭐라고 하나?","SLA","FDM","GTA","DDM","PRA",1],["부흥고등학교 무한상상실은 동아리‘후츠파’의 작업실이다. 후츠파의 스펠링은 어떻게 되는가?","Futsupa","Hutsupa","Chutzpah","Futzpah","Hutzpah",3],["무한상상실에는 레이저커터기가 있다. 무엇을 자르는 데 사용될까?","유리","가죽","액정","나무","알루미늄",4],["상:다음중 3D 디자인 프로그램인 123D design 에서의 도구와 설명이 잘못 짝지어진 것은?","Smart Scale-형상을 이동 및 회전,확대,축소 할 수 있다","Loft - 선택한 면들을 연결시켜 형상을 만든다","Fillet - 모서리를 둥글게 깎아낸다","Merge - 형상과 형상을 합친다","Shell - 선택한 면을 기울인다",5],["중:다음중 3D 디자인 프로그램인 123D design 에서 기본 도형이 아닌 것은?","반구","삼각뿔","도넛","오각기둥","원뿔",5],["우리 학교 최대 지원금을 받는 명예의 동아리 후츠파의 멋지고 유능하며 통솔력이 뛰어난 기장의 이름은 무엇일까?","김동하","김진우","이기백","김민정","전승민",3],["3d 프린터로 출력물을 뽑을때 두가지 색이 동시에 나타날수 있을까?","O","X",2],["3d프린터로 뽑은 출력물은 단단한 편이다.","O","X",1],["후츠파에서 3d 모델링을 할때 '123d design'을 사용한다. 이 프로그램으로 동물/사람 같은 세밀한 출력물을 뽑을수 있을까?","O","X",1],["3d 프린터로 나오는 출력물의 재질은?","플라스틱","유리","세라믹","고무","스티로폼",1],["3d 프린트에서 나오는 출력물의 내부를 비울 수 있다.","O","X",2],["부흥고등학교 3d 프린터 동아리 이름은?","마우스","유글레나","후쿠오카","후츠파","프리큐어",4],["3현재 3D 프린터가 활용되고 있는 분야가 아닌 것은?","의료", "군사", "건축", "체스", "생산",4],["현재 3D 프린터가 가지고 있는 단점이 아닌 것은?","대중화의 어려움", "개인형 맞춤 제작","한정된 재료","복잡한 구조", "느린 프린팅 속도",2],["최초의 3d 프린터는 언제 발명되었을까?","1970년대","1980년대","1990년대","2000년대","2010년대"],["미국 오크 릿지 국립 연구소 (Oak Ridge National Laboratory, ORNL)의 연구팀이 세상에서 가장 작은 피젯 스피너 (fidget spinner)를 제작했는데요. 이 피젯 스피너의 지름의 길이는 얼마일까?","0.1mm","0.5mm","1cm","4cm","6cm",1],["부흥고에 있는 3d 프린터의 개수는?","1개","3개","4개","6개","없다.",4],["3D 프린터로 스포츠카를 만들 수 있는 제작이 가능해졌다. 그중 블레이드 슈퍼카가 있는데 2초만에 최대 몇Km 까지 속도를 낼 수 있을까?","60", "70","80", "90","100"],["학교에 있는 3D프린터는 몇 개 고장 나있을까?","없다","2개","3개","4개","5개",3],["3D 프린터가 최근에 보급 돼는 프린터는 절삭형이다.","O","X",2],["3D 프린터가 어느나라에서 처음 개발 돼었을까?","미국","중국","베트남","이스라엘","영국",1],["다음은 3D 모델링 프로그램 중 하나인 블렌더의 단축키이다. 단축키와 명령이 잘못 짝지어진 것은?","Ctrl+Z - 전역 undo명령, 누르는 각각이 한 단계 undone 시킨다.","TAB - 편집 모드와 객체 선택 모드 사이를 토글한다.","Alt+A - 선택한 개체 또는 정점의 크기를 조정한다. - 선택한 창의 애니메이션을 재생한다.","Shift+D - 선택한 객체 또는 정점들을 복사한다.","N - 선택한 객체의 수치 정보를 가져온다.",3],["다음중 3D 모델링 프로그램이 아닌 것은?","123Design","blender","Alias 알리아스","라이노","메이플스토리",5],["3D 프린터는 금속, 고무, 플리스틱 등 다양한 소재를 이용해 프린팅 할 수 있다.","O","X",1],["동아리 후츠파 교실은?","2-12","1-2","보건실","물리실","컴퓨터실",5],["후츠파 뜻은?","Stone Baby","엔지니어","사고, 생각","철면피","멍청한 천재",4],["후츠파는 지난 과학부스운영축제에서 5X2cm 크기의 명찰을 뽑이 배부했다. 명찰 하나당 제작에 걸린 시간은?","5분", "10분"," 15분","20분 이상",4],["분말을 도포해 굳히는 방식으로 제작하는 3D 프린팅 기술은?","SLS","SBS","SVS","KBS","MBC",3],["3d 프린팅으로 만든 작품은 뭐로 뽑을까?","3d 프린터","문구점","스마트폰","머신러닝","전류계",1],["컴퓨터실의 컴퓨턴는 몇 대일까요?","30대","33대","35대","37대","39대",5],["‘3d’의d는 무슨단어의 약자일까요?","dimension","dirty","disgusting","dismiss","dear",1],["3D 프린팅이 대중화된다면 그 다음으로 비슷한 혁명을 일으킬 수 있는, 나노머신을 이용한 물질재조합장치 이름은?","유니버셜 컨스트럭터","CNC 머시닝","SLA(광경화성 수지 적층 조형)","스콧 크럼프","레이저 클레이딩(Laser Cladding)",1],["이중에서 개인이 만들면 처벌받게 되는 3D 프린팅 작품은?","건물","음식","인공 장기","옷","무기",5],["3D프린터 동아리의 이름인 후츠파의 유래는?","히브리어로 무례, 뻔뻔을 뜻하기 때문이다","창조 정신이라는 후츠파 정신에서 따온 것이다","일본 후츠카이치이라는 지역의 이름을 본따온 것이다","영어 감탄사 HOOTS에서 본따온 것이다","후추를 좋아해 후추파로 하려했다가 오타가 남",1],["3D프린터로 건축물을 만들때 아직 해결되지 않은 단점에 해당하는 것은?","비용이 많이 든다","집보다 크기가 커야한다","단열,보온 면이 부족하다","만들어지는 시간이 오래 걸린다","정밀하지 않으면 자유곡면이 만들어지지 않는다",4],["우리학교에 3d프린팅을 할수있는곳(무상실)운 어디있을까요?","1층","2층","3층","4층","5층",1],["다음중 3d모델링 프로그램이 아닌것은? ","123d design","blender","퓨전360","scratch","Rhino",4],["후츠파 인원은 몇명일까요?","22명","25명","28명","31명","33명"],["다음 중 보기를 보고 3D 프린터의 장점이 아닌 것은?","부품 수가 줄어든다.","조립 등 제작 공정이 줄어든다.","무게 및 부피를 줄일 수 있다.","부품 제작시간과 비용이 줄어든다.","프로그래밍 시간을 단축할 수 있다",5]];
 
 var quizNum = quizArray.length;
 var correctAnswer = 0;
+var count = 0;
 
 function show_question(){
-	var rand = Math.floor(Math.random() * (quizNum-1));
-	//layer.style.display="inline";
-	var quizLength = quizArray[rand].length;
-	correctAnswer = quizArray[rand][quizLength-1];
-	document.getElementById("timeLeft").innerHTML=clock;
-	document.getElementById("quizBoard").innerHTML=quizArray[rand][0];
-	for(var i=1;i<quizLength-1;i++){
-		document.getElementById("answer"+i).innerHTML=('<a href="javascript:void(0)" onclick="check_answer('+i+')">'+i+')'+quizArray[rand][i]+'</a><br>');
+	if(count < quizNum){
+		count ++;
+		var rand = Math.floor(Math.random() * (quizNum-1));
+		//layer.style.display="inline";
+		var quizLength = quizArray[rand].length;
+		correctAnswer = quizArray[rand][quizLength-1];
+		document.getElementById("timeLeft").innerHTML=clock;
+		document.getElementById("quizLeft").innerHTML=quizNum - count;
+		document.getElementById("quizBoard").innerHTML=quizArray[rand][0];
+		for(var i=1;i<quizLength-1;i++){
+			document.getElementById("answer"+i).innerHTML=('<a href="javascript:void(0)" onclick="check_answer('+i+')">'+i+')'+quizArray[rand][i]+'</a><br>');
+		}
+		hide_question();
+	}else {
+		document.getElementById("timeLeft").innerHTML=0;
+		document.getElementById("quizLeft").innerHTML=quizNum - count;
+		document.getElementById("quizScore").innerHTML="당신은 "+(q_num-1)+"문제중 "+score+"개를 맞췄습니다.";
+		//document.all.quizScore.style.display="inline";
 	}
-	hide_question();
-	/*} else {
-		document.all.timeLeft.innerHTML=0;
-		document.all.quizScore.innerHTML="당신은 "+(q_num-1)+"문제중 "+score+"개를 맞췄습니다.";
-		document.all.quizScore.style.display="inline";
-	}*/
 }
 
 function hide_question(){
 	if (clock>0) {
-		document.all.timeLeft.innerHTML=clock;
+		document.getElementById("timeLeft").innerHTML=clock;
 		clock--;
 		timer=setTimeout("hide_question()",1000);
 	} else {
@@ -50,11 +64,39 @@ function hide_question(){
 	}
 }
 
+function game_end(){
+	document.getElementById("Result").innerHTML="Game End!\nCorrect: "+score+"\nWrong: "+wrong+"\nPass: "+pass;
+	document.getElementById("timeLeft").innerHTML="";
+	document.getElementById("quizLeft").innerHTML="";
+	document.getElementById("quizBoard").innerHTML="";
+	document.getElementById("answerBoard").innerHTML="";
+	document.getElementById("answer1").innerHTML="";
+	document.getElementById("answer2").innerHTML="";
+	document.getElementById("answer3").innerHTML="";
+	document.getElementById("answer4").innerHTML="";
+	document.getElementById("answer5").innerHTML="";
+	clock = 0;
+}
+
+function pass_question(){
+	pass++;
+	document.getElementById("timeLeft").innerHTML=0;
+	if(quizNum - count > 0){
+		clearTimeout(timer);
+		clock = delay;
+		timer=setTimeout("show_question()",700);
+	}
+	else{
+		game_end();
+	}
+}
+
 function check_answer(answer){
 	if (correctAnswer==answer){
 		score++;
 		document.all.answerBoard.innerHTML="<font color=blue><b>정답입니다.</b></font>";
 	} else {
+		wrong++;
 		document.all.answerBoard.innerHTML="<font color=red><b>땡! 틀렸습니다.</b></font>";
 	}
 	clock=0;
@@ -71,6 +113,13 @@ window.onload=show_question;
 제한시간 : <B><span id="timeLeft"></span></B> 초<br>
 <br>
 
+남은 문제 : <B><span id="quizLeft"></span></B> 문제<br>
+<br>
+
+Result : <B><span id="Result"></span></B> <br>
+<br>
+
+<input type="button" id="pass" onclick="pass_question();" value="Pass" />
 
 Quiz : <div id="quizBoard"> </div>
 <br>
@@ -82,7 +131,7 @@ Answer : <div id="answerBoard"> </div>
 <div id="answer5"></div>
 <br>
 
-
+<!--
 <div id="question1" style="display:none">
 	<a href="javascript:void(0)" onclick="check_answer('1')">1) SLA</a><br>
 	<a href="javascript:void(0)" onclick="check_answer('2')">2) FDM</a><br>
@@ -90,7 +139,7 @@ Answer : <div id="answerBoard"> </div>
 	<a href="javascript:void(0)" onclick="check_answer('4')">4) DDM</a><br>
 	<a href="javascript:void(0)" onclick="check_answer('4')">5) PRA</a><br>
 </div>
-
+-->
 
 
 
