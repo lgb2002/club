@@ -58,7 +58,6 @@ function show_question(){
 	document.getElementById("Result").innerHTML="Correct: "+score+"\nWrong: "+wrong+"\nPass: "+pass;
 	document.getElementById("Point").innerHTML="Point: "+point;
 	if(count < quizCount){
-		
 		var a = numbers[count]-1 // a= rand
 		count ++;
 		//layer.style.display="inline";
@@ -146,9 +145,40 @@ function check_answer(answer){
 }
 
 function game_start(){
-	while(input == null)
+	while(input == null){
 		input = prompt('랭킹에 등록될 닉네임을 정해주세요.');
-	alert(input + "님 환영합니다. '지-능'을 겨루어서"+ input+" 님이 부흥고의 1등임을 증명하세요!");
+	}
+	alert(input + "님 환영합니다. '지능'을 겨루어서"+ input+" 님이 부흥고의 1등임을 증명하세요!");
+
+	/*
+	document.getElementById("name1").value=input;
+	document.getElementById("namecheck").submit();
+
+	var a = "{{exist}}";
+	alert(a);
+	*/
+
+
+	/*
+	setTimeout(function() {
+		if({{ exist }} == 1){
+			alert("이미 등록된 이름입니다. 다른 이름을 기입해주세요.");
+			input = null;
+			game_start();
+		}
+	},1000);*/
+
+	/*
+
+	if(a == 1){
+		alert("이미 등록된 이름입니다. 다른 이름을 기입해주세요.");
+		input = null;
+		game_start();
+	}
+	else
+		alert(input + "님 환영합니다. '지-능'을 겨루어서"+ input+" 님이 부흥고의 1등임을 증명하세요!");
+
+	*/
 	//document.getElementById("gamestart").style.display = "block";
 }
 
@@ -196,8 +226,7 @@ window.onload=game_start;
 	</tr>
 		<tr>
 		<th scope="row">패스하기</th>
-		<td><input type="button" id="pass" onclick="pass_question();" value="다음 문제로 패스" /></td>
-		<td><input type="button" id="quiz" onclick="game_end();" value="게임 끝내기" /></td>
+		<td><input type="button" id="pass" onclick="pass_question();" value="다음 문제로 패스" /><input type="button" id="quiz" onclick="game_end();" value="게임 끝내기" /></td>
 	</tr>
 	<tr>
 		<th scope="row">문제 :</th>
@@ -235,6 +264,13 @@ window.onload=game_start;
 		<input type="hidden" name = "name2" id="name2" value="">
 		<input type="hidden" name ="point2" id="point2" value=0>
 		<input type="button" id="pass" onclick="httpsend();" value="점수를 랭킹에 기록하시겠습니까?"/>
+	</form>
+</div>
+
+<div id="namecheck2" style="display:none">
+	<form id = "namecheck" action ="rank" method="post">
+		{% csrf_token %}
+		<input type="hidden" name ="name1" id="name1" value="">
 	</form>
 </div>
 
