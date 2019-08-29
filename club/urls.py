@@ -31,8 +31,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     #url(r'^signup/', signup),
-    url(r'^admin', admin.site.urls),
     url(r'', include('main.urls')),
+    url(r'^admin/', admin.site.urls),
     url(r'^chutzpah/', include('chutzpah.urls')),
     url(r'^chutzpah', include('chutzpah.urls')),
     url(r'^rande/', include('rande.urls')),

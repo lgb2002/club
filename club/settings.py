@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'main',
     'chutzpah',
     'rande',
+    'club',
 )
 
 INSTALLED_APPS += ('django_summernote', )

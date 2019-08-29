@@ -11,7 +11,9 @@
 	<title>후츠파 동아리 퀴즈 게임</title>
 
 <script language="javascript">
-var delay=10; //시간설정
+var delay=15; //시간설정
+
+var multiplePoint = 100;
 
 var q_num=1;
 var timer;
@@ -21,30 +23,62 @@ var score=0;
 var wrong=0;
 var pass=0;
 
-var quizArray = [["플라스틱으로 된 필라멘트를 쌓아 출력물을 만드는 방식을 뭐라고 하나?","SLA","FDM","GTA","DDM","PRA",1],["부흥고등학교 무한상상실은 동아리‘후츠파’의 작업실이다. 후츠파의 스펠링은 어떻게 되는가?","Futsupa","Hutsupa","Chutzpah","Futzpah","Hutzpah",3],["무한상상실에는 레이저커터기가 있다. 무엇을 자르는 데 사용될까?","유리","가죽","액정","나무","알루미늄",4],["상:다음중 3D 디자인 프로그램인 123D design 에서의 도구와 설명이 잘못 짝지어진 것은?","Smart Scale-형상을 이동 및 회전,확대,축소 할 수 있다","Loft - 선택한 면들을 연결시켜 형상을 만든다","Fillet - 모서리를 둥글게 깎아낸다","Merge - 형상과 형상을 합친다","Shell - 선택한 면을 기울인다",5],["중:다음중 3D 디자인 프로그램인 123D design 에서 기본 도형이 아닌 것은?","반구","삼각뿔","도넛","오각기둥","원뿔",5],["우리 학교 최대 지원금을 받는 명예의 동아리 후츠파의 멋지고 유능하며 통솔력이 뛰어난 기장의 이름은 무엇일까?","김동하","김진우","이기백","김민정","전승민",3],["3d 프린터로 출력물을 뽑을때 두가지 색이 동시에 나타날수 있을까?","O","X",2],["3d프린터로 뽑은 출력물은 단단한 편이다.","O","X",1],["후츠파에서 3d 모델링을 할때 '123d design'을 사용한다. 이 프로그램으로 동물/사람 같은 세밀한 출력물을 뽑을수 있을까?","O","X",1],["3d 프린터로 나오는 출력물의 재질은?","플라스틱","유리","세라믹","고무","스티로폼",1],["3d 프린트에서 나오는 출력물의 내부를 비울 수 있다.","O","X",2],["부흥고등학교 3d 프린터 동아리 이름은?","마우스","유글레나","후쿠오카","후츠파","프리큐어",4],["3현재 3D 프린터가 활용되고 있는 분야가 아닌 것은?","의료", "군사", "건축", "체스", "생산",4],["현재 3D 프린터가 가지고 있는 단점이 아닌 것은?","대중화의 어려움", "개인형 맞춤 제작","한정된 재료","복잡한 구조", "느린 프린팅 속도",2],["최초의 3d 프린터는 언제 발명되었을까?","1970년대","1980년대","1990년대","2000년대","2010년대"],["미국 오크 릿지 국립 연구소 (Oak Ridge National Laboratory, ORNL)의 연구팀이 세상에서 가장 작은 피젯 스피너 (fidget spinner)를 제작했는데요. 이 피젯 스피너의 지름의 길이는 얼마일까?","0.1mm","0.5mm","1cm","4cm","6cm",1],["부흥고에 있는 3d 프린터의 개수는?","1개","3개","4개","6개","없다.",4],["3D 프린터로 스포츠카를 만들 수 있는 제작이 가능해졌다. 그중 블레이드 슈퍼카가 있는데 2초만에 최대 몇Km 까지 속도를 낼 수 있을까?","60", "70","80", "90","100"],["학교에 있는 3D프린터는 몇 개 고장 나있을까?","없다","2개","3개","4개","5개",3],["3D 프린터가 최근에 보급 돼는 프린터는 절삭형이다.","O","X",2],["3D 프린터가 어느나라에서 처음 개발 돼었을까?","미국","중국","베트남","이스라엘","영국",1],["다음은 3D 모델링 프로그램 중 하나인 블렌더의 단축키이다. 단축키와 명령이 잘못 짝지어진 것은?","Ctrl+Z - 전역 undo명령, 누르는 각각이 한 단계 undone 시킨다.","TAB - 편집 모드와 객체 선택 모드 사이를 토글한다.","Alt+A - 선택한 개체 또는 정점의 크기를 조정한다. - 선택한 창의 애니메이션을 재생한다.","Shift+D - 선택한 객체 또는 정점들을 복사한다.","N - 선택한 객체의 수치 정보를 가져온다.",3],["다음중 3D 모델링 프로그램이 아닌 것은?","123Design","blender","Alias 알리아스","라이노","메이플스토리",5],["3D 프린터는 금속, 고무, 플리스틱 등 다양한 소재를 이용해 프린팅 할 수 있다.","O","X",1],["동아리 후츠파 교실은?","2-12","1-2","보건실","물리실","컴퓨터실",5],["후츠파 뜻은?","Stone Baby","엔지니어","사고, 생각","철면피","멍청한 천재",4],["후츠파는 지난 과학부스운영축제에서 5X2cm 크기의 명찰을 뽑이 배부했다. 명찰 하나당 제작에 걸린 시간은?","5분", "10분"," 15분","20분 이상",4],["분말을 도포해 굳히는 방식으로 제작하는 3D 프린팅 기술은?","SLS","SBS","SVS","KBS","MBC",3],["3d 프린팅으로 만든 작품은 뭐로 뽑을까?","3d 프린터","문구점","스마트폰","머신러닝","전류계",1],["컴퓨터실의 컴퓨턴는 몇 대일까요?","30대","33대","35대","37대","39대",5],["‘3d’의d는 무슨단어의 약자일까요?","dimension","dirty","disgusting","dismiss","dear",1],["3D 프린팅이 대중화된다면 그 다음으로 비슷한 혁명을 일으킬 수 있는, 나노머신을 이용한 물질재조합장치 이름은?","유니버셜 컨스트럭터","CNC 머시닝","SLA(광경화성 수지 적층 조형)","스콧 크럼프","레이저 클레이딩(Laser Cladding)",1],["이중에서 개인이 만들면 처벌받게 되는 3D 프린팅 작품은?","건물","음식","인공 장기","옷","무기",5],["3D프린터 동아리의 이름인 후츠파의 유래는?","히브리어로 무례, 뻔뻔을 뜻하기 때문이다","창조 정신이라는 후츠파 정신에서 따온 것이다","일본 후츠카이치이라는 지역의 이름을 본따온 것이다","영어 감탄사 HOOTS에서 본따온 것이다","후추를 좋아해 후추파로 하려했다가 오타가 남",1],["3D프린터로 건축물을 만들때 아직 해결되지 않은 단점에 해당하는 것은?","비용이 많이 든다","집보다 크기가 커야한다","단열,보온 면이 부족하다","만들어지는 시간이 오래 걸린다","정밀하지 않으면 자유곡면이 만들어지지 않는다",4],["우리학교에 3d프린팅을 할수있는곳(무상실)운 어디있을까요?","1층","2층","3층","4층","5층",1],["다음중 3d모델링 프로그램이 아닌것은? ","123d design","blender","퓨전360","scratch","Rhino",4],["후츠파 인원은 몇명일까요?","22명","25명","28명","31명","33명"],["다음 중 보기를 보고 3D 프린터의 장점이 아닌 것은?","부품 수가 줄어든다.","조립 등 제작 공정이 줄어든다.","무게 및 부피를 줄일 수 있다.","부품 제작시간과 비용이 줄어든다.","프로그래밍 시간을 단축할 수 있다",5]];
+var quizArray = [["플라스틱으로 된 필라멘트를 쌓아 출력물을 만드는 방식을 뭐라고 하나?","SLA","FDM","GTA","DDM","PRA",1],["부흥고등학교 무한상상실은 동아리‘후츠파’의 작업실이다. 후츠파의 스펠링은 어떻게 되는가?","Futsupa","Hutsupa","Chutzpah","Futzpah","Hutzpah",3],["무한상상실에는 레이저커터기가 있다. 무엇을 자르는 데 사용될까?","유리","가죽","액정","나무","알루미늄",4],["상:다음중 3D 디자인 프로그램인 123D design 에서의 도구와 설명이 잘못 짝지어진 것은?","Smart Scale-형상을 이동 및 회전,확대,축소 할 수 있다","Loft - 선택한 면들을 연결시켜 형상을 만든다","Fillet - 모서리를 둥글게 깎아낸다","Merge - 형상과 형상을 합친다","Shell - 선택한 면을 기울인다",5],["중:다음중 3D 디자인 프로그램인 123D design 에서 기본 도형이 아닌 것은?","반구","삼각뿔","도넛","오각기둥","원뿔",5],["우리 학교 최대 지원금을 받는 명예의 동아리 후츠파의 멋지고 유능하며 통솔력이 뛰어난 기장의 이름은 무엇일까?","김동하","김진우","이기백","김민정","전승민",3],["3d 프린터로 출력물을 뽑을때 두가지 색이 동시에 나타날수 있을까?","O","X",2],["3d프린터로 뽑은 출력물은 단단한 편이다.","O","X",1],["후츠파에서 3d 모델링을 할때 '123d design'을 사용한다. 이 프로그램으로 동물/사람 같은 세밀한 출력물을 뽑을수 있을까?","O","X",1],["3d 프린터로 나오는 출력물의 재질은?","플라스틱","유리","세라믹","고무","스티로폼",1],["3d 프린트에서 나오는 출력물의 내부를 비울 수 있다.","O","X",2],["부흥고등학교 3d 프린터 동아리 이름은?","마우스","유글레나","후쿠오카","후츠파","프리큐어",4],["3현재 3D 프린터가 활용되고 있는 분야가 아닌 것은?","의료", "군사", "건축", "체스", "생산",4],["현재 3D 프린터가 가지고 있는 단점이 아닌 것은?","대중화의 어려움", "개인형 맞춤 제작","한정된 재료","복잡한 구조", "느린 프린팅 속도",2],["최초의 3d 프린터는 언제 발명되었을까?","1970년대","1980년대","1990년대","2000년대","2010년대",2],["미국 오크 릿지 국립 연구소 (Oak Ridge National Laboratory, ORNL)의 연구팀이 세상에서 가장 작은 피젯 스피너 (fidget spinner)를 제작했는데요. 이 피젯 스피너의 지름의 길이는 얼마일까?","0.1mm","0.5mm","1cm","4cm","6cm",1],["부흥고에 있는 3d 프린터의 개수는?","1개","3개","4개","6개","없다.",4],["3D 프린터로 스포츠카를 만들 수 있는 제작이 가능해졌다. 그중 블레이드 슈퍼카가 있는데 2초만에 최대 몇Km 까지 속도를 낼 수 있을까?","60", "70","80", "90","100",4],["학교에 있는 3D프린터는 몇 개 고장 나있을까?","없다","2개","3개","4개","5개",3],["3D 프린터가 최근에 보급 돼는 프린터는 절삭형이다.","O","X",2],["3D 프린터가 어느나라에서 처음 개발 돼었을까?","미국","중국","베트남","이스라엘","영국",1],["다음은 3D 모델링 프로그램 중 하나인 블렌더의 단축키이다. 단축키와 명령이 잘못 짝지어진 것은?","Ctrl+Z - 전역 undo명령, 누르는 각각이 한 단계 undone 시킨다.","TAB - 편집 모드와 객체 선택 모드 사이를 토글한다.","Alt+A - 선택한 개체 또는 정점의 크기를 조정한다. - 선택한 창의 애니메이션을 재생한다.","Shift+D - 선택한 객체 또는 정점들을 복사한다.","N - 선택한 객체의 수치 정보를 가져온다.",3],["다음중 3D 모델링 프로그램이 아닌 것은?","123Design","blender","Alias 알리아스","라이노","메이플스토리",5],["3D 프린터는 금속, 고무, 플리스틱 등 다양한 소재를 이용해 프린팅 할 수 있다.","O","X",1],["동아리 후츠파 교실은?","2-12","1-2","보건실","물리실","컴퓨터실",5],["후츠파 뜻은?","Stone Baby","엔지니어","사고, 생각","철면피","멍청한 천재",4],["후츠파는 지난 과학부스운영축제에서 5X2cm 크기의 명찰을 뽑이 배부했다. 명찰 하나당 제작에 걸린 시간은?","5분", "10분"," 15분","20분 이상",4],["분말을 도포해 굳히는 방식으로 제작하는 3D 프린팅 기술은?","SLS","SBS","SVS","KBS","MBC",3],["3d 프린팅으로 만든 작품은 뭐로 뽑을까?","3d 프린터","문구점","스마트폰","머신러닝","전류계",1],["컴퓨터실의 컴퓨터는 몇 대일까요?","30대","33대","35대","37대","39대",5],["‘3d’의d는 무슨단어의 약자일까요?","dimension","dirty","disgusting","dismiss","dear",1],["3D 프린팅이 대중화된다면 그 다음으로 비슷한 혁명을 일으킬 수 있는, 나노머신을 이용한 물질재조합장치 이름은?","유니버셜 컨스트럭터","CNC 머시닝","SLA(광경화성 수지 적층 조형)","스콧 크럼프","레이저 클레이딩(Laser Cladding)",1],["이중에서 개인이 만들면 처벌받게 되는 3D 프린팅 작품은?","건물","음식","인공 장기","옷","무기",5],["3D프린터 동아리의 이름인 후츠파의 유래는?","히브리어로 무례, 뻔뻔을 뜻하기 때문이다","창조 정신이라는 후츠파 정신에서 따온 것이다","일본 후츠카이치이라는 지역의 이름을 본따온 것이다","영어 감탄사 HOOTS에서 본따온 것이다","후추를 좋아해 후추파로 하려했다가 오타가 남",1],["3D프린터로 건축물을 만들때 아직 해결되지 않은 단점에 해당하는 것은?","비용이 많이 든다","집보다 크기가 커야한다","단열,보온 면이 부족하다","만들어지는 시간이 오래 걸린다","정밀하지 않으면 자유곡면이 만들어지지 않는다",4],["우리학교에 3d프린팅을 할수있는곳(무상실)운 어디있을까요?","1층","2층","3층","4층","5층",1],["다음중 3d모델링 프로그램이 아닌것은? ","123d design","blender","퓨전360","scratch","Rhino",4],["후츠파 인원은 몇명일까요?","22명","25명","28명","31명","33명",2],["다음 중 보기를 보고 3D 프린터의 장점이 아닌 것은?","부품 수가 줄어든다.","조립 등 제작 공정이 줄어든다.","무게 및 부피를 줄일 수 있다.","부품 제작시간과 비용이 줄어든다.","프로그래밍 시간을 단축할 수 있다",5]];
 
-var quizNum = quizArray.length;
+var quizNum = 38;//quizArray.length;
+var quizCount = 30;
 var correctAnswer = 0;
 var count = 0;
+var point = 0;
+var input = "";
+
+function shuffleRandom(n){
+	var ar = new Array();
+	var temp;
+	var rnum;
+	//전달받은 매개변수 n만큼 배열 생성 ( 1~n )
+	for(var i=1; i<=n; i++){
+		ar.push(i);
+	}
+	//값을 서로 섞기
+	for(var i=0; i< ar.length ; i++){
+		rnum = Math.floor(Math.random() *n); //난수발생
+		temp = ar[i];
+		ar[i] = ar[rnum];
+		ar[rnum] = temp;
+	}
+	return ar;
+}
+
+var numbers = shuffleRandom(quizNum);
 
 function show_question(){
-	if(count < quizNum){
+	document.getElementById("quizContents").style.display = "block";
+	document.getElementById("gamestart").style.display = "none";
+	document.getElementById("Result").innerHTML="Correct: "+score+"\nWrong: "+wrong+"\nPass: "+pass;
+	document.getElementById("Point").innerHTML="Point: "+point;
+	if(count < quizCount){
+		
+		var a = numbers[count]-1 // a= rand
 		count ++;
-		var rand = Math.floor(Math.random() * (quizNum-1));
 		//layer.style.display="inline";
-		var quizLength = quizArray[rand].length;
-		correctAnswer = quizArray[rand][quizLength-1];
+		var quizLength = quizArray[a].length;
+		correctAnswer = quizArray[a][quizLength-1];
+		//alert(quizLength);
 		document.getElementById("timeLeft").innerHTML=clock;
-		document.getElementById("quizLeft").innerHTML=quizNum - count;
-		document.getElementById("quizBoard").innerHTML=quizArray[rand][0];
+		document.getElementById("quizLeft").innerHTML=quizCount - count + 1;
+		document.getElementById("quizBoard").innerHTML=quizArray[a][0];
+		for(var i=1;i<6;i++){
+			document.getElementById("answer"+i).innerHTML="";
+		}
 		for(var i=1;i<quizLength-1;i++){
-			document.getElementById("answer"+i).innerHTML=('<a href="javascript:void(0)" onclick="check_answer('+i+')">'+i+')'+quizArray[rand][i]+'</a><br>');
+			document.getElementById("answer"+i).innerHTML=('<a href="javascript:void(0)" onclick="check_answer('+i+')">'+i+')'+quizArray[a][i]+'</a><br>');
 		}
 		hide_question();
 	}else {
 		document.getElementById("timeLeft").innerHTML=0;
-		document.getElementById("quizLeft").innerHTML=quizNum - count;
-		document.getElementById("quizScore").innerHTML="당신은 "+(q_num-1)+"문제중 "+score+"개를 맞췄습니다.";
+		document.getElementById("quizLeft").innerHTML=quizCount - count + 1;
+		game_end();
 		//document.all.quizScore.style.display="inline";
 	}
 }
@@ -65,9 +99,14 @@ function hide_question(){
 }
 
 function game_end(){
-	document.getElementById("Result").innerHTML="Game End!\nCorrect: "+score+"\nWrong: "+wrong+"\nPass: "+pass;
-	document.getElementById("timeLeft").innerHTML="";
-	document.getElementById("quizLeft").innerHTML="";
+	//alert("test");
+	document.getElementById("quizLeft").innerHTML="0";
+	document.getElementById("timeLeft").innerHTML="0";
+	document.getElementById("quizContents").style.display = "none";
+	//document.getElementById("resultSend").style.display="block";
+	//document.getElementById("Result").innerHTML="Game End!\nCorrect: "+score+"\nWrong: "+wrong+"\nPass: "+pass;
+	//document.getElementById("Point").innerHTML="Point: "+point;
+	/*
 	document.getElementById("quizBoard").innerHTML="";
 	document.getElementById("answerBoard").innerHTML="";
 	document.getElementById("answer1").innerHTML="";
@@ -75,13 +114,13 @@ function game_end(){
 	document.getElementById("answer3").innerHTML="";
 	document.getElementById("answer4").innerHTML="";
 	document.getElementById("answer5").innerHTML="";
-	clock = 0;
+	*/
 }
 
 function pass_question(){
 	pass++;
 	document.getElementById("timeLeft").innerHTML=0;
-	if(quizNum - count > 0){
+	if(quizCount - count > 0){
 		clearTimeout(timer);
 		clock = delay;
 		timer=setTimeout("show_question()",700);
@@ -94,9 +133,11 @@ function pass_question(){
 function check_answer(answer){
 	if (correctAnswer==answer){
 		score++;
+		point += multiplePoint * clock;
 		document.all.answerBoard.innerHTML="<font color=blue><b>정답입니다.</b></font>";
 	} else {
 		wrong++;
+		point += 10;
 		document.all.answerBoard.innerHTML="<font color=red><b>땡! 틀렸습니다.</b></font>";
 	}
 	clock=0;
@@ -104,48 +145,401 @@ function check_answer(answer){
 	timer=setTimeout("hide_question()",700);
 }
 
-window.onload=show_question;
+function game_start(){
+	input = prompt('랭킹에 등록될 닉네임을 정해주세요.');
+	alert(input + "님 환영합니다. '지-능'을 겨루어서"+ input+" 님이 부흥고의 1등임을 증명하세요!");
+	//document.getElementById("gamestart").style.display = "block";
+}
+
+function httpsend(){
+	//alert(input+point)
+	document.getElementById("name2").value=input;
+	document.getElementById("point2").value=point;
+	document.getElementById("rankfrm").submit();
+}
+
+window.onload=game_start;
 </script>
 </head>
 
+
+
 <body>
 
-제한시간 : <B><span id="timeLeft"></span></B> 초<br>
-<br>
-
-남은 문제 : <B><span id="quizLeft"></span></B> 문제<br>
-<br>
-
-Result : <B><span id="Result"></span></B> <br>
-<br>
-
-<input type="button" id="pass" onclick="pass_question();" value="Pass" />
-
-Quiz : <div id="quizBoard"> </div>
-<br>
-Answer : <div id="answerBoard"> </div>
-<div id="answer1"></div>
-<div id="answer2"></div>
-<div id="answer3"></div>
-<div id="answer4"></div>
-<div id="answer5"></div>
-<br>
-
-<!--
-<div id="question1" style="display:none">
-	<a href="javascript:void(0)" onclick="check_answer('1')">1) SLA</a><br>
-	<a href="javascript:void(0)" onclick="check_answer('2')">2) FDM</a><br>
-	<a href="javascript:void(0)" onclick="check_answer('3')">3) GTA</a><br>
-	<a href="javascript:void(0)" onclick="check_answer('4')">4) DDM</a><br>
-	<a href="javascript:void(0)" onclick="check_answer('4')">5) PRA</a><br>
+<div id = "gamestart" class="back" onclick="show_question();" style="display:block">
+	<div class="button_base b07_3d_double_roll">
+		<div>Game Start</div>
+		<div>Game Start</div>
+		<div>Game Start</div>
+		<div>Game Start</div>
+	</div>
 </div>
--->
 
+<div id="quizContents"  style="display:none; border: 1px solid gold; float:left; width:50%; padding:10px;" >
 
+	<table class="type07">
+	<thead>
+	<tr>
+		<th scope="cols">0</th>
+		<th scope="cols">1</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<th scope="row">제한시간 :</th>
+		<td><B><span id="timeLeft"></span></B> 초<br></td>
+	</tr>
+	<tr>
+		<th scope="row">남은 문제 :</th>
+		<td><B><span id="quizLeft"></span></B> 문제<br></td>
+	</tr>
+		<tr>
+		<th scope="row">패스하기</th>
+		<td><input type="button" id="pass" onclick="pass_question();" value="다음 문제로 패스" /></td>
+		<td><input type="button" id="quiz" onclick="game_end();" value="게임 끝내기" /></td>
+	</tr>
+	<tr>
+		<th scope="row">문제 :</th>
+		<td><div id="quizBoard"> </div> <br></td>
+	</tr>
+	<tr>
+		<th scope="row">보기 :</th>
+		<td><div id="answerBoard"> </div>
+		<div id="answer1"></div>
+		<div id="answer2"></div>
+		<div id="answer3"></div>
+		<div id="answer4"></div>
+		<div id="answer5"></div>
+		<br></td>
+	</tr>
+	<tr>
+		<th scope="row">Result :</th>
+		<td><B><span id="Result"></span></B> <br></td>
+	</tr>
+	<tr>
+		<th scope="row">Point :</th>
+		<td><B><span id="Point"></span></B> <br></td>
+	</tr>
+	</tbody>
+	</table>
 
-<div id="quizScore" style="display:none">
+	<!--<div id="quizScore" style="display:none">
+	</div>-->
 </div>
+
+
+<div id="resultSend" style="display:block">
+	<form id = "rankfrm" action ="rank" method="post">
+		{% csrf_token %}
+		<input type="hidden" name = "name2" id="name2" value="">
+		<input type="hidden" name ="point2" id="point2" value=0>
+		<input type="button" id="pass" onclick="httpsend();" value="점수를 랭킹에 기록하시겠습니까?"/>
+	</form>
+</div>
+
+<div class="ranking" style="display:block" style="border: 1px solid gold; float:left; width:50%; padding:10px;">
+	{% for rank in ranking %}
+	<ul>
+		<li>{{ rank.user_name }} : {{ rank.user_point }}</li>
+	</ul>
+	{% endfor %}
+</div>
+
+
 
 </body>
 </html>
 
+
+
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+#resultSend {
+	all: unset;
+}
+
+.preserve-3d {
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}
+body {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	overflow-x: none;
+	background-color: #ffffff;
+	font-family: Roboto Condensed, sans-serif;
+	font-size: 12px;
+	font-smooth: always;
+	-webkit-font-smoothing: antialiased;
+}
+.back {
+	width: 33%;
+	height: 200px;
+	float: left;
+	background-color: #eeeeee;
+	border: 10px;
+	border-color: #ffffff;
+	border-style: solid;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	counter-increment: bc;
+	padding: 0px 5px 5px 5px;
+}
+.back:before {
+	content: counter(bc) "_";
+	position: absolute;
+	padding: 10px;
+}
+@media screen and (max-width: 1260px) {
+	.back {
+		width: 50%;
+	}
+}
+@media screen and (max-width: 840px) {
+	.back {
+		width: 100%;
+	}
+}
+.button_base {
+	margin: 0;
+	border: 0;
+	font-size: 18px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -100px;
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-user-select: none;
+	cursor: default;
+}
+.button_base:hover {
+	cursor: pointer;
+}
+
+table.type07 {
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border: 1px solid #ccc;
+	margin: 20px 10px;
+}
+table.type07 thead {
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	background: #e7708d;
+}
+table.type07 thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+}
+table.type07 tbody th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #fcf1f4;
+}
+table.type07 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+/* ### ### ### 07 */
+.b07_3d_double_roll {
+	perspective: 500px;
+	-webkit-perspective: 500px;
+	-moz-perspective: 500px;
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+}
+.b07_3d_double_roll div {
+	position: absolute;
+	text-align: center;
+	padding: 10px;
+	border: #000000 solid 1px;
+	pointer-events: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.b07_3d_double_roll div:nth-child(1) {
+	color: #000000;
+	background-color: #ffffff;
+	z-index: 0;
+	width: 100%;
+	height: 50px;
+	clip: rect(0px, 100px, 50px, 0px);
+	position: absolute;
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	transform-origin: 50% 50% -25px;
+	-webkit-transform-origin: 50% 50% -25px;
+	-moz-transform-origin: 50% 50% -25px;
+}
+.b07_3d_double_roll div:nth-child(2) {
+	color: #000000;
+	background-color: #000000;
+	z-index: -1;
+	width: 100%;
+	height: 50px;
+	clip: rect(0px, 100px, 50px, 0px);
+	position: absolute;
+	transform: rotateX(90deg);
+	-webkit-transform: rotateX(90deg);
+	-moz-transform: rotateX(90deg);
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	transform-origin: 50% 50% -25px;
+	-webkit-transform-origin: 50% 50% -25px;
+	-moz-transform-origin: 50% 50% -25px;
+}
+.b07_3d_double_roll div:nth-child(3) {
+	color: #000000;
+	background-color: #ffffff;
+	z-index: 0;
+	width: 100%;
+	height: 50px;
+	clip: rect(0px, 200px, 50px, 100px);
+	position: absolute;
+	transition: all 0.2s ease 0.1s;
+	-webkit-transition: all 0.2s ease 0.1s;
+	-moz-transition: all 0.2s ease 0.1s;
+	transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	transform-origin: 50% 50% -25px;
+	-webkit-transform-origin: 50% 50% -25px;
+	-moz-transform-origin: 50% 50% -25px;
+}
+.b07_3d_double_roll div:nth-child(4) {
+	color: #000000;
+	background-color: #000000;
+	z-index: -1;
+	width: 100%;
+	height: 50px;
+	clip: rect(0px, 200px, 50px, 100px);
+	position: absolute;
+	transform: rotateX(-90deg);
+	-webkit-transform: rotateX(-90deg);
+	-moz-transform: rotateX(-90deg);
+	transition: all 0.2s ease 0.1s;
+	-webkit-transition: all 0.2s ease 0.1s;
+	-moz-transition: all 0.2s ease 0.1s;
+	transform-origin: 50% 50% -25px;
+	-webkit-transform-origin: 50% 50% -25px;
+	-moz-transform-origin: 50% 50% -25px;
+}
+.b07_3d_double_roll:hover div:nth-child(1) {
+	background-color: #000000;
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	transform: rotateX(-90deg);
+	-webkit-transform: rotateX(-90deg);
+	-moz-transform: rotateX(-90deg);
+}
+.b07_3d_double_roll:hover div:nth-child(2) {
+	color: #ffffff;
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+}
+.b07_3d_double_roll:hover div:nth-child(3) {
+	background-color: #000000;
+	transition: all 0.2s ease 0.1s;
+	-webkit-transition: all 0.2s ease 0.1s;
+	-moz-transition: all 0.2s ease 0.1s;
+	transform: rotateX(90deg);
+	-webkit-transform: rotateX(90deg);
+	-moz-transform: rotateX(90deg);
+}
+.b07_3d_double_roll:hover div:nth-child(4) {
+	color: #ffffff;
+	transition: all 0.2s ease 0.1s;
+	-webkit-transition: all 0.2s ease 0.1s;
+	-moz-transition: all 0.2s ease 0.1s;
+	transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+}
+
+.container {
+	padding: 2em;
+}
+
+/* GENERAL BUTTON STYLING */
+
+button,
+button::after {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+button {
+	background: none;
+	border: 3px solid #fff;
+	border-radius: 5px;
+	color: #fff;
+	display: block;
+	font-size: 1.6em;
+	font-weight: bold;
+	margin: 1em auto;
+	padding: 2em 6em;
+	position: relative;
+	text-transform: uppercase;
+}
+
+button::before,
+button::after {
+	background: #fff;
+	content: '';
+	position: absolute;
+	z-index: -1;
+}
+button:hover {
+	color: #2ecc71;
+}
+
+/* BUTTON 5 */
+.btn-5 {
+	overflow: hidden;
+}
+.btn-5::after {
+/*background-color: #f00;*/
+	height: 100%;
+	left: -35%;
+	top: 0;
+	transform: skew(50deg);
+	transition-duration: 0.6s;
+	transform-origin: top left;
+	width: 0;
+}
+.btn-5:hover:after {
+	height: 100%;
+	width: 135%;
+}
+
+
+</style>

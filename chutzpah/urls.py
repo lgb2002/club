@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.conf.urls import include
 
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
@@ -12,4 +14,5 @@ urlpatterns = [
 	url(r'^robox', views.robox, name='index'),
 	#url(r'^index2', views.index2, name='index2'),
 	url(r'^game', views.game, name='game'),
+	url(r'^rank', views.rank, name='rank'),
 ]

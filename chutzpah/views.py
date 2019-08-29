@@ -1,9 +1,22 @@
 from django.shortcuts import render
+from chutzpah.models import *
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+@csrf_exempt
+def rank(request):
+	if request.method == "POST":
+		name = request.POST.get('name2')
+		point = request.POST.get('point2')
+		rank = UserRank(user_name=name,user_point=point)
+		rank.save()
+	ranking = UserRank.objects.all().order_by('-user_point')
+	return render(request, 'chutzpah/game.html',{'ranking':ranking})
+
 
 def game(request):
-	return render(request, 'chutzpah/game.html')
+	ranking = UserRank.objects.all().order_by('user_point')
+	return render(request, 'chutzpah/game.html',{'ranking':ranking})
 
 def index(request):
 	return render(request, 'chutzpah/index.html')
