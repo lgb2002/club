@@ -30,7 +30,7 @@ var quizCount = 30;
 var correctAnswer = 0;
 var count = 0;
 var point = 0;
-var input = "";
+var input = null;
 
 function shuffleRandom(n){
 	var ar = new Array();
@@ -146,7 +146,8 @@ function check_answer(answer){
 }
 
 function game_start(){
-	input = prompt('랭킹에 등록될 닉네임을 정해주세요.');
+	while(input == null)
+		input = prompt('랭킹에 등록될 닉네임을 정해주세요.');
 	alert(input + "님 환영합니다. '지-능'을 겨루어서"+ input+" 님이 부흥고의 1등임을 증명하세요!");
 	//document.getElementById("gamestart").style.display = "block";
 }
@@ -237,7 +238,7 @@ window.onload=game_start;
 	</form>
 </div>
 
-<div class="ranking" style="display:block" style="border: 1px solid gold; float:left; width:50%; padding:10px;">
+<div class="ranking" style="display:block; border:1px solid gold; float:right; width:30%; padding:10px;">
 	{% for rank in ranking %}
 	<ul>
 		<li>{{ rank.user_name }} : {{ rank.user_point }}</li>

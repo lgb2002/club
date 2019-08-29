@@ -10,12 +10,12 @@ def rank(request):
 		point = request.POST.get('point2')
 		rank = UserRank(user_name=name,user_point=point)
 		rank.save()
-	ranking = UserRank.objects.all().order_by('-user_point')
+	ranking = UserRank.objects.all().order_by('user_point')
 	return render(request, 'chutzpah/game.html',{'ranking':ranking})
 
 
 def game(request):
-	ranking = UserRank.objects.all().order_by('user_point')
+	ranking = UserRank.objects.all().order_by('-user_point')
 	return render(request, 'chutzpah/game.html',{'ranking':ranking})
 
 def index(request):
