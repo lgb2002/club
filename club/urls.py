@@ -33,6 +33,8 @@ urlpatterns = [
     #url(r'^signup/', signup),
     url(r'', include('main.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^chatbot/', include('chatbot.urls')),
+    url(r'^chatbot', include('chatbot.urls')),
     url(r'^chutzpah/', include('chutzpah.urls')),
     url(r'^chutzpah', include('chutzpah.urls')),
     url(r'^rande/', include('rande.urls')),

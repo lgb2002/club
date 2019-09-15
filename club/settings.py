@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'rande',
     'club',
     'chatbot',
+    'runcode',
 )
 
 INSTALLED_APPS += ('django_summernote', )
@@ -131,6 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+'''
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'runcode/templates/runcode'),
+)
+STATIC_URL = '/assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+'''
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 STATIC_URL = '/static/'
